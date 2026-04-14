@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" />
+    <title>Vue.js</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> <!-- including the Vue.js library from a CDN -->
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <span>💕</span>
+        </header>
+        <main>
+            <h1>Hello, {{name}}!</h1>
+            <p>I'm about to learn <a href="https://vuejs.org" target="_blank">Vue.js</a>!</p>
+            <p>Testing some reactive components! Here is an {{emoji}}! This is a full sentence - "{{sentence}}".</p>
+            <p>A button - <button @click="handleClick">Click me!</button> which counts the number of clicks.</p>
+            <p>Number of clicks: {{clicks}}</p>
+            <p>RESET clicks - <button @click="resetClicks">Reset</button></p>
+            <p>Take me somewhere else - <button @click="go_to_next">Portal</button></p>
+        </main>
+    </div>
+    <script>
+        const {createApp, ref} = Vue //importing createApp and ref from Vue
+        createApp(
+            {
+                setup() {
+                    const name = ref("Tests") //creating a reactive variable 'name' with initial value "Tests"
+                    const emoji = ref("😂")
+                    const sentence = ref("Meow says the cow!")
+                    const clicks = ref(0) //creating a reactive variable 'clicks' with initial value 0
+                    const handleClick =  () => {
+                        clicks.value++ //incrementing the value of 'clicks' when the button is clicked
+                    }
+                    const resetClicks = () => {
+                        clicks.value = 0 //resetting the value of 'clicks' to 0 when the reset button is clicked
+                    }
+                    const go_to_next = () => {
+                        window.location.href = "page2.html"
+                    }
+                    return {name, emoji, sentence, clicks, handleClick, resetClicks, go_to_next} //returning the reactive variables to be used in the template
+                }
+            }
+        ).mount("#app") //mounting the Vue application to the DOM element with id "app"
+    </script>
+</body>
