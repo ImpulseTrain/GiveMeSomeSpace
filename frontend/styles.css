@@ -6,4 +6,5 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   backdrop-filter: blur(20px);
+  color: white;
 }
