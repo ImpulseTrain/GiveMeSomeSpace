@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from datetime import datetime
 
-class LaunchEvent(BaseModel):
+class LaunchModel(BaseModel):
     name: str
     date: datetime
     launch_service_provider: str | None = None

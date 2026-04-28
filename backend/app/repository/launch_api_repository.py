@@ -1,19 +1,35 @@
+from datetime import datetime, timezone, date
 from fastapi import APIRouter
 import httpx
 
-# Global router for the LaunchAPIRepository
-router = APIRouter() 
-
 class LaunchAPIRepository:
-    base_url = (
-    "https://ll.thespacedevs.com/2.3.0/launches/"
-    "?limit=10&ordering=-net&net__lte=now"
-    ) # API endpoint. Please check the documentation for filtering and ordering options.
+    
+    now = date.today().isoformat()
+    base_url = f"https://ll.thespacedevs.com/2.3.0/launches/?limit=10&ordering=-net&net__lte={now}"
+    # API endpoint. Please check the documentation for filtering and ordering options.
+    # ordering = -net means we want to order the launches by their net (launch date) in descending order (latest first).
+    # net__lte={now} is a filter that ensures we only get launches that are scheduled to occur on or before the current date, effectively giving us past launches.
+
     def __init__(self):
         print("Launch Repository Object Created")
     
     @staticmethod
-    def check_labels(data):
+    def check_labels(data) -> bool:
+        """
+        Checks if the required labels are present in the data returned by the API (json type).
+
+        Validated entries:
+
+        - launch_service_provider.name
+        - mission.description
+        - mission.orbit.name 
+
+        Args:
+            data (json like dict): The data to be validated.
+
+        Returns:
+            bool: True if all required labels are validated with no errors, False otherwise.
+        """
         try:
             assert data['launch_service_provider']['name'] is not None, "Name is missing"
             assert data['mission']['description'] is not None, "Description is missing"
@@ -24,12 +40,31 @@ class LaunchAPIRepository:
             return False
 
     @classmethod
-    async def get_launches(cls):
+    async def get_launches(cls) -> list :
+        """
+        Asynchronous class method to fetch launch data from the API, validate it, and return a list of 
+        launches with the required information. This is the method that helps in retrieving what is relavent 
+        from the API.
+
+        Returned data includes:
+        - name
+        - date
+        - launch_service_provider
+        - status
+        - status_message
+        - mission_description
+        - orbit
+
+        Args:
+            None
+
+        Returns:
+            list: A list of dictionaries containing the validated launch information.
+    """
         async with httpx.AsyncClient(timeout=10.0) as client:
             response = await client.get(cls.base_url)
         data = response.json()
         print("Data fetched from API")
-        print(data)
         # Validate the data
         valid_launches = []
         for launch in data['results']:
@@ -50,7 +85,3 @@ class LaunchAPIRepository:
 
 
 
-# Call class method externally
-@router.get("/launches")
-async def get_launches():
-    return await LaunchAPIRepository.get_launches()
