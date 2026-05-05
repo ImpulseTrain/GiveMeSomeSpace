@@ -11,10 +11,21 @@
 
 <body>
     <div id="app">
-        <header>
-            <span>💕</span>
-        </header>
         <main>
+            <div class="topnav">
+                <a href="index.html">
+                    <img src="./assets/logo.svg" class="logo" alt="logo">
+                </a>
+                <div class="nav-links">
+                    <a class="active" href="#home">Home</a>
+                    <a href="#news">News</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <!-- separator line that is flush with the topnav -->
+            <hr>
+
+
             <h1>Hello, {{name}}!</h1>
             <p>I'm about to learn <a href="https://vuejs.org" target="_blank">Vue.js</a>!</p>
             <p>Testing some reactive components! Here is an {{emoji}}! This is a full sentence - "{{sentence}}".</p>

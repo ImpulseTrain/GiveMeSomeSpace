@@ -1,3 +1,41 @@
+.topnav {
+  background-color: rgb(75, 183, 172, 0.1); /* palegreen with 10% opacity */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.logo {
+  padding-top: 10px;
+  height: 65px;
+  margin-left: auto;
+  filter: invert(1);
+}
+
+.nav-links {
+  margin-left: auto;
+  display: flex;
+}
+
+.nav-links a {
+  float: right;
+  color: wheat;
+  text-align: center;
+  padding: 10px 16px;
+  text-decoration: underline solid;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+}
+
+hr {
+  margin: 0;      /* removes the space around the line */
+  padding: 0;
+  border: none;
+  height: 2px;    /* thickness */
+  background: white; /* line color */
+}
+
+
 body {
   margin: 0;
   min-height: 100vh;
