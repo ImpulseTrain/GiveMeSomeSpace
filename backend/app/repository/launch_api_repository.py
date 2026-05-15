@@ -48,6 +48,7 @@ class LaunchAPIRepository:
 
         Returned data includes:
         - name
+        - launch id
         - date
         - launch_service_provider
         - status
@@ -73,7 +74,8 @@ class LaunchAPIRepository:
         return [
             {
             'name': value['name'],
-            'date': value['net'],
+            'launchid': value['id'],
+            'launchdate': str(value['net']),
             'launch_service_provider': value['launch_service_provider']['name'],
             'status': value['status']['id'],
             'status_message': value['status']['description'],

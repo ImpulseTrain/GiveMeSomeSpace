@@ -1,0 +1,1 @@
+LAUNCHES_TABLE_NAME:str = "spacedout"

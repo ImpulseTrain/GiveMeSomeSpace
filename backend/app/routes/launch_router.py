@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from app.services.launch_service import LaunchService
-
+from app.constants import constants
 
 # Global router for the LaunchAPIRepository
 launchRouter = APIRouter() 
@@ -20,4 +20,6 @@ async def get_launches():
     Returns:
         list: A list of dictionaries containing the validated launch information.
     """
-    return await LaunchService.fetch_launches()
+    launches = await LaunchService.fetch_launches()
+    LaunchService().store_launches_to_dynamodb(launches, constants.LAUNCHES_TABLE_NAME)
+    return launches

@@ -3,7 +3,8 @@ from datetime import datetime
 
 class LaunchModel(BaseModel):
     name: str
-    date: datetime
+    launchid: str
+    launchdate: str
     launch_service_provider: str | None = None
     status: int | None = None
     status_message: str | None = None

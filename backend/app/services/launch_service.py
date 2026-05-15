@@ -1,8 +1,15 @@
 import json
 from app.repository.launch_api_repository import LaunchAPIRepository
 from app.schemas.launch_models import LaunchModel
+from app.repository.dynamodb_launches import DynamoDBLaunches
+from app.constants import constants
 
 class LaunchService:
+
+    def __init__(self):
+        print("Launch Service Object Created")
+        self.launch_dynamodb_obj = DynamoDBLaunches()
+
 
     @classmethod
     async def fetch_launches(cls) -> list[LaunchModel]:
@@ -28,6 +35,10 @@ class LaunchService:
             except Exception as e:
                 print(f"Invalid launch skipped: {e}")
             
-        print(validated_launches)
+        #print(validated_launches)
 
         return validated_launches
+    
+    def store_launches_to_dynamodb(self, launches: list[LaunchModel], table_name: str) -> None:
+        self.launch_dynamodb_obj.write_launches_to_dynamodb(table_name=table_name, launches=launches)
+
