@@ -35,6 +35,64 @@ hr {
   background: white; /* line color */
 }
 
+.card-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  height: calc(100vh - 120px); /* full viewport height minus the height of the nav and hr */
+  box-sizing: border-box;
+}
+
+/* Cards */
+.card {
+  flex: 1; /* each card takes equal space */
+
+  flex-direction: column;
+
+  border-radius: 30px;
+  padding: 20px;
+
+  background: rgba(255, 255, 255, 0.2);
+
+  /* Text styling */
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 5px;
+
+
+  /* optional */
+  backdrop-filter: blur(10px);
+}
+
+.launch-logo {
+  width: 250px;
+  height: auto;
+  filter: invert(1);
+}
+.launch-logo-hover {
+  width: 250px;
+  height: auto;
+  filter: invert(1);
+  display: none;
+}
+
+/* Hover effect */
+.card:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.3)
+}
+.card:hover .launch-logo {
+  display: none;
+}
+.card:hover .launch-logo-hover {
+  display: block;
+}
 
 body {
   margin: 0;

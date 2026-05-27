@@ -19,20 +19,23 @@
                 <div class="nav-links">
                     <a class="active" href="#home">Home</a>
                     <a href="#news">News</a>
+                    <a href="#gallery">Gallery</a>
                     <a href="#contact">Contact</a>
                 </div>
             </div>
             <!-- separator line that is flush with the topnav -->
             <hr>
 
-
-            <h1>Hello, {{name}}!</h1>
-            <p>I'm about to learn <a href="https://vuejs.org" target="_blank">Vue.js</a>!</p>
-            <p>Testing some reactive components! Here is an {{emoji}}! This is a full sentence - "{{sentence}}".</p>
-            <p>A button - <button @click="handleClick">Click me!</button> which counts the number of clicks.</p>
-            <p>Number of clicks: {{clicks}}</p>
-            <p>RESET clicks - <button @click="resetClicks">Reset</button></p>
-            <p>Take me somewhere else - <button @click="go_to_next">Portal</button></p>
+            <div class="card-container">
+                <a href="#launch" class="card">
+                    <span>Launch</span>
+                    <img src="./assets/launch.svg" class="launch-logo" alt="launch-logo">
+                    <img src="./assets/launch2.svg" class="launch-logo-hover" alt="launch-logo-hover">    
+                </a>
+                <a href="#events" class="card">
+                    Events
+                </a>
+            </div>
         </main>
     </div>
     <script>
